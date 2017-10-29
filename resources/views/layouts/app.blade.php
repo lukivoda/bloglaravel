@@ -89,11 +89,30 @@
                         <a href="{{route('post.create')}}">Create new post</a>
                     </li>
 
+                    <li class="list-group-item" >
+                        <a href="{{route('categories')}}">Categories</a>
+                    </li>
+
+                    <li class="list-group-item" >
+                        <a href="{{route('category.create')}}">Create new category</a>
+                    </li>
+
                 </ul>
 
              </div>
                 @endif
                <div class="col-lg-8">
+
+                   @if(count($errors)>0)
+                   <ul class="list-group">
+                        @foreach($errors->all() as $error )
+
+                       <li class="list-group-item text-danger"> <strong>{{$error}}</strong> </li>
+
+                        @endforeach
+                   </ul>
+
+                    @endif
                    @yield('content')
 
                </div>
