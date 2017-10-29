@@ -17,21 +17,31 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::get('/post/create',[
-    
-    'uses' => 'PostsController@create',
-    
-    'as'   => 'post.create' 
-    
-]);
 
 
-Route::post('/posts/store',[
-    
-    'uses' =>'PostsController@store',
-    'as'   => 'post.store'
-    
-]);
+
+//vo url-ot ke ima prefix admin, a pristap do routes ke imaat samo logiranite korisnici
+Route::group(['prefix' => 'admin','middleware' =>'auth'],function() {
+
+
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::get('/post/create',[
+
+        'uses' => 'PostsController@create',
+
+        'as'   => 'post.create'
+
+    ]);
+
+
+    Route::post('/posts/store',[
+
+        'uses' =>'PostsController@store',
+        'as'   => 'post.store'
+
+    ]);
+
+});

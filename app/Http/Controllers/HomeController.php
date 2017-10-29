@@ -11,10 +11,15 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
+    //oav znaci deka sekoj metod sto bi go imale vo ovoj konstruktor mora  da pomine niz ovoj filter(korisnikot mora da bide logiran)
+    
+    // logikata ja prefrluvame vo web
+    
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
 
     /**
      * Show the application dashboard.

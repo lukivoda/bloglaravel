@@ -77,6 +77,8 @@
 
         <div class="container">
             <div class="row">
+                {{--proveruvame dali korisnikot e logiran(ako e logiran moze da ni go prikaze leviot sidebar)--}}
+              @if(Auth::check())
              <div class="col-lg-4">
                 <ul class="list-group">
 
@@ -90,6 +92,7 @@
                 </ul>
 
              </div>
+                @endif
                <div class="col-lg-8">
                    @yield('content')
 
