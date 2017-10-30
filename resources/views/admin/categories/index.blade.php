@@ -4,6 +4,11 @@
 @section('content')
 
   <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Categories</h3>
+    </div>
+
+
     <div class="panel-body">
 
 
@@ -18,6 +23,8 @@
       </thead>
       <tbody>
 
+      @if($categories->count() >0)
+
       @foreach($categories as $category)
         <tr>
           <td>{{$category->name}}</td>
@@ -25,6 +32,15 @@
           <td><a class="btn btn-danger" href="{{route('category.delete',$category->id)}}">Delete</a></td>
         </tr>
           @endforeach
+
+      @else
+
+        <tr>
+          <th colspan="5" class="text-center">No Categories</th>
+        </tr>
+
+
+      @endif
       </tbody>
     </table>
 
