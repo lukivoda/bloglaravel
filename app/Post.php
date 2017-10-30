@@ -15,11 +15,21 @@ class Post extends Model
        'title',
         'content',
         'featured',
-        'category_id'
+        'category_id',
+        'slug'
         
 ];
-
+    
     protected $dates = ['deleted_at'];
+    
+    
+    public function getFeaturedAttribute($featured) {
+        
+        return asset($featured);//go vraca celiot path do fajlot
+        
+    }
+    
+    
     
     public function category(){
         

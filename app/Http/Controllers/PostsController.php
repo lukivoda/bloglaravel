@@ -16,7 +16,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        
+        return view('admin.posts.index')->with('posts',Post::all());
     }
 
     /**
@@ -27,9 +28,17 @@ class PostsController extends Controller
     public function create()
     {
         
+        $categories = Category::all();
+        
+        if(count($categories) ==0){
+            
+            Session::flash('info',"You must add at least one category");
+            
+            return redirect()->back();
+        }
         
         
-        return view('admin.posts.create')->with('categories',Category::all());
+        return view('admin.posts.create')->with('categories',$categories);
     }
 
     /**
@@ -55,7 +64,7 @@ class PostsController extends Controller
       $featured_new_name = time().$featured->getClientOriginalName();
 
 
-      $featured->move('uploads/posts',$featured_new_name);
+      $featured->move('uploads/posts/',$featured_new_name);
 
 
       Post::create([
@@ -63,7 +72,9 @@ class PostsController extends Controller
           'content' => $request->content,
           'category_id' => $request->category_id,
 
-          'featured' => 'uploads/posts'.$featured_new_name
+          'featured' => 'uploads/posts'.$featured_new_name,
+
+          'slug' => str_slug($request->title)
 
       ]);
 

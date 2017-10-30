@@ -59,7 +59,7 @@ Route::group(['prefix' => 'admin','middleware' =>'auth'],function() {
 
     ]);
 
-    Route::get('/categories/index',[
+    Route::get('/categories',[
 
         'uses' => 'CategoriesController@index',
 
@@ -89,6 +89,15 @@ Route::group(['prefix' => 'admin','middleware' =>'auth'],function() {
         'uses' => 'CategoriesController@update',
         
         'as'  => 'category.update'
+    ]);
+
+
+    Route::get('/posts', [
+
+       'uses' => 'PostsController@index',
+
+        'as'  => 'posts'
+
     ]);
     
     
