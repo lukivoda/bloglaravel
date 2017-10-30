@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Post;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -29,6 +30,8 @@ class PostsController extends Controller
     {
         
         $categories = Category::all();
+
+        $tags = Tag::all();
         
         if(count($categories) ==0){
             
@@ -38,7 +41,7 @@ class PostsController extends Controller
         }
         
         
-        return view('admin.posts.create')->with('categories',$categories);
+        return view('admin.posts.create')->with('categories',$categories)->with('tags',$tags);
     }
 
     /**
@@ -54,7 +57,8 @@ class PostsController extends Controller
            'title' =>'required|max:255',
            'featured' => 'required|image',
            'content'  => 'required',
-           'category_id' => 'required'
+           'category_id' => 'required',
+           'tags'      => 'required'
            
        ]);
 
@@ -67,7 +71,7 @@ class PostsController extends Controller
       $featured->move('uploads/posts/',$featured_new_name);
 
 
-      Post::create([
+      $post = Post::create([
          'title' => $request->title,
           'content' => $request->content,
           'category_id' => $request->category_id,
@@ -78,9 +82,12 @@ class PostsController extends Controller
 
       ]);
 
+    //vo pivot tablelata post_tag pravime insert na relaciite post_id so tag_id
+        $post->tags()->attach($request->tags);
+
         Session::flash('success','Post inserted successfully');
 
-      return redirect()->back();
+      return redirect()->route('posts');
 
 
 
@@ -111,7 +118,9 @@ class PostsController extends Controller
 
         $post = Post::find($id);
 
-        return view('admin.posts.edit')->with('post',$post)->with('categories',$categories);
+        $tags = Tag::all();
+
+        return view('admin.posts.edit')->with('post',$post)->with('categories',$categories)->with('tags',$tags);
     }
 
     /**
@@ -127,7 +136,8 @@ class PostsController extends Controller
 
             'title' => 'required',
             'content' =>'required',
-            'category_id'=> 'required'
+            'category_id'=> 'required',
+            'tags'      => 'required'
         ]);
 
         $post = Post::find($id);
@@ -156,6 +166,8 @@ class PostsController extends Controller
         $post->content = $request->content;
 
         $post->save();
+
+        $post->tags()->sync($request->tags);
 
 
         Session::flash('success','Post was updated successfully');

@@ -50,6 +50,34 @@
 
 
                 <div class="form-group">
+                    <label for="tags">Tags (use CTRL button)</label>
+                    <select name="tags[]" multiple="" class="form-control">
+
+
+                        @foreach($tags as $tag)
+
+                            <option value="{{$tag->id}}"
+
+                            @foreach($post->tags  as $t)
+                                @if($tag->id == $t->id )
+                                    selected
+                                        @endif
+                                    @endforeach
+
+
+
+                            >{{$tag->name}}
+
+                            </option>
+
+
+                        @endforeach
+                    </select>
+                </div>
+
+
+
+                <div class="form-group">
 
                     <label for="content">Content</label>
 

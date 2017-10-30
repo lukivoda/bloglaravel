@@ -39,10 +39,18 @@
                         <option value="{{$category->id}}"  >{{$category->name}}</option>
                          @endforeach
                     </select>
-
-
                 </div>
 
+
+                <div class="form-group">
+                    <label for="tags">Tags (use CTRL button)</label>
+                    <select name="tags[]" multiple="" class="form-control">
+
+                        @foreach($tags as $tag)
+                        <option value="{{$tag->id}}">{{$tag->name}}</option>
+                          @endforeach
+                    </select>
+                </div>
 
 
                 <div class="form-group">

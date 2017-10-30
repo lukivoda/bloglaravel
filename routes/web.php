@@ -11,6 +11,9 @@
 |
 */
 
+use App\Post;
+use App\Tag;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -218,7 +221,19 @@ Route::group(['prefix' => 'admin','middleware' =>'auth'],function() {
         'as'  => 'tag.store'
     ]);
     
-    
+
+
+    Route::get('/test',function(){
+
+
+
+        $post= Post::find(7);
+
+        $tags =  $post->tags;
+
+       return $tags;
+
+    });
     
 
 
