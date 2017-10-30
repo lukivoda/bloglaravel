@@ -13,8 +13,8 @@
 
                     <th>Image</th>
                     <th>Title</th>
-                    <th>Editing</th>
-                    <th>Deleting</th>
+                    <th>Restoring</th>
+                    <th>Destroying</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -23,8 +23,8 @@
                     <tr>
                         <td><img width="90" height="50" src="{{$post->featured}}" alt="{{$post->title}}"></td>
                         <td>{{$post->title}}</td>
-                        <td><a class="btn btn-xs btn-warning" href="">Edit</a></td>
-                        <td><a class="btn btn-xs btn-danger" href="{{route('post.delete',$post->id)}}">Delete</a></td>
+                        <td><a class="btn btn-xs btn-success" href="{{route('post.restore',$post->id)}}">Restore</a></td>
+                        <td><a class="btn btn-xs btn-danger" href="{{route('post.kill',$post->id)}}">Delete</a></td>
                     </tr>
                 @endforeach
                 </tbody>
