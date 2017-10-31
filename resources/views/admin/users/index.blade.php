@@ -44,7 +44,17 @@
                                 @endif
 
                             </td>
-                            <td><a class="btn btn-xs btn-danger" href="">Delete</a></td>
+                            <td>
+
+                        {{--linkot za brisenje da se pojavi samo ako id na logiranio korisnik ne e isto so id na korisnikot koj go dobivame od view-to(go vlecime od databazata)--}}
+
+
+                               @if(Auth::id() != $user->id)
+
+                                <a href="{{route('user.delete',$user->id)}}" class="btn btn-xs btn-danger" >Delete</a>
+
+                                 @endif
+                            </td>
                         </tr>
                     @endforeach
 

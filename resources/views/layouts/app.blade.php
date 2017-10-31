@@ -18,6 +18,8 @@
 
     <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
 
+    @yield('styles')
+
 </head>
 <body>
     <div id="app">
@@ -137,6 +139,16 @@
                         <a href="{{route('posts.trashed')}}">Trashed posts</a>
                     </li>
 
+
+                   @if(Auth::user()->admin)
+
+                    <li class="list-group-item" >
+                        <a href="{{route('settings')}}">Site settings</a>
+                    </li>
+
+                   @endif
+
+
                 </ul>
 
              </div>
@@ -170,6 +182,8 @@
     <script src="{{ asset('js/app.js') }}"></script>
 
     <script src="{{ asset('js/toastr.min.js') }}"></script>
+
+    @yield('scripts')
 
     <script>
 

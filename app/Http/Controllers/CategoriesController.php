@@ -114,6 +114,12 @@ class CategoriesController extends Controller
 
         $category->delete();
 
+
+        foreach ($category->posts as $post){
+
+            $post->forceDelete();
+        }
+
         Session::flash("success","You've deleted a category!");
 
         return redirect()->route('categories');

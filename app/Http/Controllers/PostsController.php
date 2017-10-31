@@ -33,9 +33,9 @@ class PostsController extends Controller
 
         $tags = Tag::all();
         
-        if(count($categories) ==0){
+        if($categories->count() ==0 || $tags->count() == 0){
             
-            Session::flash('info',"You must add at least one category");
+            Session::flash('info',"You must add at least one category and tag");
             
             return redirect()->back();
         }
