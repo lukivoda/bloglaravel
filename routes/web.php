@@ -273,7 +273,22 @@ Route::group(['prefix' => 'admin','middleware' =>'auth'],function() {
 
 
 
+    Route::get('/profile',[
 
+        'uses' => 'ProfilesController@index',
+
+        'as'   => 'profile'
+
+    ]);
+
+
+    Route::post('/profile/update',[
+
+        'uses' => 'ProfilesController@update',
+
+        'as'   => 'profile.update'
+
+    ]);
 
 
 
