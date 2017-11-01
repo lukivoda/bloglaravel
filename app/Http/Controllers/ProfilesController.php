@@ -96,14 +96,13 @@ class ProfilesController extends Controller
             $avatar->move('uploads/avatars',$avatar_new_name);
             
             $user->profile->avatar = 'uploads/avatars/'.$avatar_new_name;
+
+            $user->profile->save();
             
         }
         
         
-        if($request->has('password')) {
 
-            $user->password = bcrypt($request->password);
-        }
 
         $user->name =$request->name;
         
@@ -125,6 +124,15 @@ class ProfilesController extends Controller
 
 
         $user->profile->save();
+
+
+
+        if($request->password) {
+
+            $user->password = bcrypt($request->password);
+
+            $user->save();
+        }
 
 
 

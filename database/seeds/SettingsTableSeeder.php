@@ -18,7 +18,7 @@ class SettingsTableSeeder extends Seeder
 
             "contact_number" =>  '057453424242',
             
-            "contact_email"  => "steve@mail.com",
+            "contact_email"  => "steffi@mail.com",
 
             "address"    => "Dimitar Vlahov 46 Veles,Macedonia "
 
