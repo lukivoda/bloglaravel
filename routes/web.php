@@ -11,7 +11,9 @@
 |
 */
 
+use App\Category;
 use App\Post;
+use App\Setting;
 use App\Tag;
 
 Route::get('/', [
@@ -35,6 +37,28 @@ Route::get('/category/{id}',[
 
     'as'   => 'category.single'
 ]);
+
+
+Route::get('/tag/{id}',[
+
+    'uses' => 'FrontendController@tag',
+
+    'as'   => 'tag.single'
+]);
+
+
+Route::get('/results',function(){
+
+    $posts = Post::where('title','like','%'.request('query').'%')->get();
+
+    $query =request('query');
+    
+    return view('results')->with('posts',$posts)
+        ->with('query',$query)
+        ->with('title',Setting::first()->site_name)
+        ->with('categories',Category::take(5)->get())
+        ->with('setting',Setting::first());
+});
 
 
 Auth::routes();
