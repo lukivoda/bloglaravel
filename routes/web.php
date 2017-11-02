@@ -21,6 +21,14 @@ Route::get('/', [
     
 ]);
 
+
+Route::get('/post/{slug}',[
+     
+    'uses' => 'FrontendController@singlePost',
+    
+    'as'   => 'post.single'
+]);
+
 Auth::routes();
 
 
@@ -47,7 +55,6 @@ Route::group(['prefix' => 'admin','middleware' =>'auth'],function() {
 
         'uses' =>'PostsController@store',
         'as'   => 'post.store'
-
     ]);
 
     Route::get('/category/create',[
