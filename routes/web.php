@@ -15,6 +15,22 @@ use App\Category;
 use App\Post;
 use App\Setting;
 use App\Tag;
+use Spatie\Newsletter\NewsletterFacade as Newsletter;
+
+
+Route::post('/subscribe',function(){
+
+    $email = request('email');
+
+    Newsletter::subscribe($email);
+
+    Session::flash('subscribed','You are successfully subscribed');
+
+
+    return redirect()->back();
+
+
+});
 
 Route::get('/', [
     

@@ -19,6 +19,8 @@
     <link rel="stylesheet" type="text/css" href={{asset("app/css/primary-menu.css")}}>
     <link rel="stylesheet" type="text/css" href={{asset("app/css/magnific-popup.css")}}>
 
+    <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
+
     <!--Styles for RTL-->
 
     <!--<link rel="stylesheet" type="text/css" href="app/css/rtl.css">-->
@@ -59,9 +61,12 @@
                     <div class="subscribe scrollme">
                         <div class="col-lg-6 col-lg-offset-5 col-md-6 col-md-offset-5 col-sm-12 col-xs-12">
                             <h4 class="subscribe-title">Email Newsletters!</h4>
-                            <form class="subscribe-form" method="post" action="">
+                            <form class="subscribe-form" method="post" action="/subscribe">
+
+                                {{csrf_field()}}
+
                                 <input class="email input-standard-grey input-white" name="email" required="required" placeholder="Your Email Address" type="email">
-                                <button class="subscr-btn">subscribe
+                                <button class="subscr-btn" type="submit">subscribe
                                     <span class="semicircle--right"></span>
                                 </button>
                             </form>
@@ -153,14 +158,26 @@
 <script src={{asset("app/js/swiper.jquery.min.js")}}></script>
 <script src={{asset("app/js/theme-plugins.js")}}></script>
 <script src={{asset("app/js/main.js")}}></script>
-<script src={{asset("app/js/form-actions.js")}}></script>
+
 
 <script src={{asset("app/js/velocity.min.js")}}></script>
 <script src={{asset("app/js/ScrollMagic.min.js")}}></script>
 <script src={{asset("app/js/animation.velocity.min.js")}}></script>
+<script src="{{ asset('js/toastr.min.js') }}"></script>
 
 
+<!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59fba2de1fd64751"></script>
 <!-- ...end JS Script -->
+
+
+<script>
+
+    @if(Session::has('subscribed'))
+       toastr.success("{{Session::get('subscribed')}}");
+
+    @endif
+
+</script>
 
 </body>
 </html>

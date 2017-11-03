@@ -36,6 +36,8 @@ class FrontendController extends Controller
         $prev_id = Post::where('id',"<",$post->id)->max('id');
         
         $next_id  = Post::where('id','>',$post->id)->min('id');
+        
+        $user = $post->user;
 
         return view('single')->with('post',$post)
             ->with('title',Setting::first()->site_name)
@@ -43,7 +45,9 @@ class FrontendController extends Controller
             ->with('setting',Setting::first())
             ->with('previous',Post::find($prev_id))
             ->with('next',Post::find($next_id))
-             ->with('tags',Tag::all());
+             ->with('tags',Tag::all())
+             ->with('user',$user);
+            
 
     }
     

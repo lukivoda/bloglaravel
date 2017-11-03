@@ -36,7 +36,7 @@
                                     Posted by
 
                                     <div class="post__author-name fn">
-                                        <a href="#" class="post__author-link">Admin</a>
+                                        <a href="#" class="post__author-link">{{$user->name}}</a>
                                     </div>
 
                                 </div>
@@ -74,22 +74,11 @@
                             </div>
                         </div>
 
-                        <div class="socials">Share:
-                            <a href="#" class="social__item">
-                                <i class="seoicon-social-facebook"></i>
-                            </a>
-                            <a href="#" class="social__item">
-                                <i class="seoicon-social-twitter"></i>
-                            </a>
-                            <a href="#" class="social__item">
-                                <i class="seoicon-social-linkedin"></i>
-                            </a>
-                            <a href="#" class="social__item">
-                                <i class="seoicon-social-google-plus"></i>
-                            </a>
-                            <a href="#" class="social__item">
-                                <i class="seoicon-social-pinterest"></i>
-                            </a>
+                        <div class="socials text-center">
+
+                             <div class="addthis_inline_share_toolbox"></div>
+
+
                         </div>
 
                     </article>
@@ -97,33 +86,26 @@
                     <div class="blog-details-author">
 
                         <div class="blog-details-author-thumb">
-                            <img src="app/img/blog-details-author.png" alt="Author">
+                            <img  src="{{$user->profile->avatar}}" alt="{{$user->name}}">
                         </div>
 
                         <div class="blog-details-author-content">
                             <div class="author-info">
-                                <h5 class="author-name">Philip Demarco</h5>
+                                <h5 class="author-name">{{$user->name}}</h5>
                                 <p class="author-info">SEO Specialist</p>
                             </div>
-                            <p class="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                                nonummy nibh euismod.
+                            <p class="text">{{$user->profile->about}}
                             </p>
                             <div class="socials">
 
-                                <a href="#" class="social__item">
-                                    <img src="app/svg/circle-facebook.svg" alt="facebook">
+                                <a href="{{$user->profile->facebook}}" class="social__item" target="_blank">
+                                    <img src="{{asset('app/svg/circle-facebook.svg')}}" alt="facebook">
                                 </a>
 
-                                <a href="#" class="social__item">
-                                    <img src="app/svg/twitter.svg" alt="twitter">
-                                </a>
 
-                                <a href="#" class="social__item">
-                                    <img src="app/svg/google.svg" alt="google">
-                                </a>
 
-                                <a href="#" class="social__item">
-                                    <img src="app/svg/youtube.svg" alt="youtube">
+                                <a href="{{$user->profile->youtube}}" class="social__item" target="_blank">
+                                    <img src="{{asset('app/svg/youtube.svg')}}" alt="youtube">
                                 </a>
 
                             </div>
